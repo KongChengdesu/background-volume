@@ -23,7 +23,8 @@
     "version": "1.6.0",
     "compatibility": {
         "minimum": "11",
-        "verified": "12.331"
+        "verified": "13.443",
+        "maximum": "15"
     },
     "url": "https://github.com/mtvjr/background-volume",
     "readme": "https://github.com/mtvjr/background-volume/blob/master/README.md",

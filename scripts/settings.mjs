@@ -52,7 +52,7 @@ function localize(key) {
 export async function createSceneSlider(sceneConfig, html, data) {
     Logger.log(Logger.Medium, "Creating scene slider");
 
-    var scene = sceneConfig.object;
+    var scene = sceneConfig.document;
     const oldVolume = getVolume(scene);
 
     const sliderHTML = await renderTemplate(Templates.SceneSlider, {
@@ -74,14 +74,14 @@ export async function createSceneSlider(sceneConfig, html, data) {
 
     // Find the 'Journal Notes' option and add the background volume config option before it
     // This should place it near the top of the 'Ambience and Atmosphere' section
-    html.find("select[name='journal']").parent().before(sliderDiv).before("<hr>");
+    html.querySelector("select[name='journal']").parentElement.parentElement.before(sliderDiv);
 
-    const sliderInput = html.find(`#${SLIDER_ID}`);
+    const sliderInput = html.querySelector(`#${SLIDER_ID}`);
 
     // Save changes to the slider when the form is being saved
-    const form = html.find('form');
-    form.submit(async () => {
-        const newVolume = parseFloat(sliderInput.val());
+    const form = html;
+    form.addEventListener("submit", async () => {
+        const newVolume = parseFloat(sliderInput.value);
         await setVolume(scene, newVolume);
     })
 
